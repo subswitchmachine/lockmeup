@@ -1717,7 +1717,8 @@
   gap: 2px;
   flex-shrink: 0;
 }
-.discord-link {
+.discord-link,
+.github-link {
   display: inline-flex;
   align-items: center;
   padding: 3px 7px;

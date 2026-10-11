@@ -60,7 +60,7 @@ export function AboutModal({ onClose }: AboutModalProps) {
             paste yourself. Nothing is uploaded anywhere.
           </p>
           <p>
-            Since I have no server or tracking I can\'t know who or how many people are using it.
+            Since I have no server or tracking I can't know who or how many people are using it.
             If you are enjoying it or have requests, join me on <a href="https://discord.gg/83yjSnGMQe">discord</a>
           </p>
 
@@ -69,6 +69,20 @@ export function AboutModal({ onClose }: AboutModalProps) {
             The lock is a <em>commitment device</em>. Although I have
             made it as tricky as possible, a technically savvy person who knows what they're doing
             <em> could</em> bypass it.
+          </p>
+
+          <h3>Open source</h3>
+          <p>
+            lockmeup is free and open source under the AGPL-3.0 licence. You can read the code,
+            check the privacy claims above for yourself, report a bug or suggest a change on{' '}
+            <a
+              href="https://github.com/subswitchmachine/lockmeup"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub
+            </a>
+            .
           </p>
         </div>
         <div className="modal-actions">

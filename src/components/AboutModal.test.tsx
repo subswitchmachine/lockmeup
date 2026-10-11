@@ -13,6 +13,7 @@ describe('AboutModal', () => {
     expect(screen.getByText('How it works')).toBeTruthy()
     expect(screen.getByText('Privacy')).toBeTruthy()
     expect(screen.getByText('Security limitations')).toBeTruthy()
+    expect(screen.getByText('Open source')).toBeTruthy()
   })
 
   it('calls onClose when the dismiss button is clicked', () => {
