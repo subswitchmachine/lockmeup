@@ -1,0 +1,76 @@
+# Build the Vite app and publish it to GitHub Pages on every push to main.
+# Pull requests just run the checks (lint + build) so broken changes are caught
+# before merge without touching the live site.
+name: CI / Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Cancel any in-progress deploy when a newer commit lands.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      IMAGES_DEPLOY_KEY: ${{ secrets.IMAGES_DEPLOY_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # The bundled puzzle images live in a private repo and are checked out
+      # into src/img (gitignored here). Pull requests from forks get no
+      # secrets, so they skip this and build against src/img-sample/ instead.
+      - name: Check out bundled images
+        if: env.IMAGES_DEPLOY_KEY != ''
+        uses: actions/checkout@v4
+        with:
+          repository: subswitchmachine/lockmeup-images
+          ssh-key: ${{ secrets.IMAGES_DEPLOY_KEY }}
+          path: src/img
+
+      - uses: actions/setup-node@v4
+        with:
+          # Node 24 ships npm 11, which matches the lockfile format committed
+          # by local `npm install`. Stay on 24+ to keep `npm ci` happy.
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npm run build
+
+      # Never publish a placeholder-only build: live locks reference the real
+      # image ids.
+      - name: Require bundled images for a deploy
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: test -n "$(ls -A src/img 2>/dev/null)"
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,13 @@
+{
+  "name": "lockmeup",
+  "short_name": "lockmeup",
+  "description": "Task-locked combination vault — design a session of tasks that gates a hidden photo.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1410",
+  "theme_color": "#f5b400",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
