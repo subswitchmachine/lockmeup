@@ -49,6 +49,34 @@ export function AboutModal({ onClose }: AboutModalProps) {
             </li>
           </ol>
 
+          <h3>Play safe</h3>
+          <p>
+            If you use lockmeup for self-bondage, <strong>always have a backup way out that
+            doesn't depend on this app</strong>. Browser data can be cleared, a battery can die, a
+            photo can come out unreadable, and software has bugs — any of these could leave the
+            combination out of reach for good.
+          </p>
+          <ul>
+            <li>
+              Keep an emergency release within reach: a spare key or the written combination in a
+              sealed envelope or tamper-evident container, or safety shears or cutters that can
+              defeat whatever is holding you.
+            </li>
+            <li>
+              Test the backup before you lock, and make sure you can reach and use it from the
+              position you'll actually be in.
+            </li>
+            <li>
+              Never use anything that restricts breathing or circulation, and never play while
+              intoxicated. Keep a phone within reach, and ideally tell someone you trust.
+            </li>
+            <li>
+              Set a max session time, and only lock yourself into something you could safely stay
+              in for much longer than you plan to.
+            </li>
+          </ul>
+          <p>You use lockmeup at your own risk.</p>
+
           <h3>Privacy</h3>
           <p>
             Everything happens entirely on your device. No data is ever sent to a server — not the
@@ -69,6 +97,12 @@ export function AboutModal({ onClose }: AboutModalProps) {
             The lock is a <em>commitment device</em>. Although I have
             made it as tricky as possible, a technically savvy person who knows what they're doing
             <em> could</em> bypass it.
+          </p>
+
+          <h3>AI disclosure</h3>
+          <p>
+            Much of lockmeup's code was written with the help of AI coding tools. I'm a
+            professional software engineer and I have reviewed the AI-written code myself.
           </p>
 
           <h3>Open source</h3>

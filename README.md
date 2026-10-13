@@ -12,6 +12,17 @@ A self-locking commitment device for the browser. Design a session of tasks, pho
 
 Everything runs entirely in the browser. No data is sent to any server.
 
+## Play safe
+
+If you use lockmeup for self-bondage, **always have a backup way out that doesn't depend on this app**. Browser data can be cleared, a battery can die, a photo can come out unreadable, and software has bugs — any of these could leave the combination out of reach for good.
+
+- Keep an emergency release within reach: a spare key or the written combination in a sealed envelope or tamper-evident container, or safety shears or cutters that can defeat whatever is holding you.
+- Test the backup before you lock, and make sure you can reach and use it from the position you'll actually be in.
+- Never use anything that restricts breathing or circulation, and never play while intoxicated. Keep a phone within reach, and ideally tell someone you trust.
+- Set a max session time, and only lock yourself into something you could safely stay in for much longer than you plan to.
+
+You use lockmeup at your own risk.
+
 ## Task types
 
 | Task | Description |
@@ -41,6 +52,10 @@ After a session completes, a **session log** can be exported as a share code for
 - Captured frames are encrypted at rest (AES-GCM via the Web Crypto API).
 - Task completion is enforced client-side. This is a **commitment device**, not a tamper-proof vault — a technically determined person with DevTools access could bypass it.
 - Time verification fetches an external time source at startup to make clock manipulation harder, but is not authoritative.
+
+## AI disclosure
+
+Much of lockmeup's code was written with the help of AI coding tools. I'm a professional software engineer and I have reviewed the AI-written code myself.
 
 ## Running locally
 

@@ -11,8 +11,10 @@ describe('AboutModal', () => {
     expect(screen.getByRole('dialog')).toBeTruthy()
     expect(screen.getByText('What is lockmeup?')).toBeTruthy()
     expect(screen.getByText('How it works')).toBeTruthy()
+    expect(screen.getByText('Play safe')).toBeTruthy()
     expect(screen.getByText('Privacy')).toBeTruthy()
     expect(screen.getByText('Security limitations')).toBeTruthy()
+    expect(screen.getByText('AI disclosure')).toBeTruthy()
     expect(screen.getByText('Open source')).toBeTruthy()
   })
 
