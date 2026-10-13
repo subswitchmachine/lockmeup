@@ -22,24 +22,24 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       IMAGES_DEPLOY_KEY: ${{ secrets.IMAGES_DEPLOY_KEY }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # The bundled puzzle images live in a private repo and are checked out
       # into src/img (gitignored here). Pull requests from forks get no
       # secrets, so they skip this and build against src/img-sample/ instead.
       - name: Check out bundled images
         if: env.IMAGES_DEPLOY_KEY != ''
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: subswitchmachine/lockmeup-images
           ssh-key: ${{ secrets.IMAGES_DEPLOY_KEY }}
           path: src/img
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
           # Node 24 ships npm 11, which matches the lockfile format committed
           # by local `npm install`. Stay on 24+ to keep `npm ci` happy.
@@ -60,17 +60,17 @@ jobs:
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
 
   deploy:
     needs: build
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
