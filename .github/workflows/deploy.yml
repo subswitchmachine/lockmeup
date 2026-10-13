@@ -1,5 +1,5 @@
 # Build the Vite app and publish it to GitHub Pages on every push to main.
-# Pull requests just run the checks (lint + build) so broken changes are caught
+# Pull requests just run the checks (lint + test + build) so broken changes are caught
 # before merge without touching the live site.
 name: CI / Deploy
 
@@ -49,6 +49,8 @@ jobs:
       - run: npm ci
 
       - run: npm run lint
+
+      - run: npm test
 
       - run: npm run build
 

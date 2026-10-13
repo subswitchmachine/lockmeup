@@ -11,6 +11,7 @@ npm run dev        # Vite dev server with HMR
 npm run build      # tsc -b && vite build
 npm run lint       # ESLint
 npm run typecheck  # tsc --noEmit (type-check without emitting)
+npm test           # Vitest, single run (npm run test:watch to watch)
 npm run preview    # serve the production build
 ```
 
@@ -126,5 +127,5 @@ Images in `src/img/<pool>/` are bundled at build time and registered in `puzzleI
 - CSS custom properties for theming: `--text`, `--text-h`, `--bg`, `--panel`, `--border`, `--accent`, `--accent-bg`, `--accent-border`, `--pass`, `--fail`, `--shadow`.
 - Task editor rows use the `Row` component (label + controls grid). Section dividers use `ModalSection`.
 - `flow-random` is a pill-style toggle label that hides its checkbox visually — the whole label is the click target, `:has(:checked)` drives the active style.
-- No test suite. TypeScript + manual testing.
+- Tests are Vitest + Testing Library, colocated as `*.test.ts(x)` next to the code they cover; component tests opt into the DOM with `// @vitest-environment happy-dom`. CI runs lint, tests and build.
 - `newFlowId()` uses a module-level counter for stable React keys — the flow is never persisted in draft form, so this is fine.

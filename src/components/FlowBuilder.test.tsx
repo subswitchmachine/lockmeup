@@ -120,6 +120,10 @@ describe('FlowBuilder', () => {
     const item: FlowItem = { id: newFlowId(), type: 'task', task: newDraft('wait') }
     render(<Harness initialItems={[item]} onContinue={onContinue} />)
     fireEvent.click(screen.getByRole('button', { name: /Capture combination/ }))
+    // No max session time is set, so the warning has to be confirmed first.
+    expect(screen.getByRole('heading', { name: 'No max session time' })).toBeTruthy()
+    expect(onContinue).not.toHaveBeenCalled()
+    fireEvent.click(screen.getByRole('button', { name: 'Continue anyway' }))
     expect(onContinue).toHaveBeenCalledTimes(1)
     const [tasks, options] = onContinue.mock.calls[0]
     expect(tasks).toHaveLength(1)
